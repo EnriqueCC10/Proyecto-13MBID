@@ -52,7 +52,16 @@ def test_esquema_datos_tarjetas(datos_tarjetas):
     # Atributo a analizar: Exactitud (a nivel de estructura del dataset
     esquema = DataFrameSchema({
         "id_cliente": Column(float, nullable=False),
-        # TODO: completar con las columnas del dataset de tarjetas y sus respectivas validaciones
+        "antiguedad_cliente": Column(float, Check.greater_than_or_equal_to(0), nullable=False),
+        "estado_civil": Column(str, nullable=False),
+        "estado_cliente": Column(str, nullable=False),
+        "gastos_ult_12m": Column(float, Check.greater_than_or_equal_to(0), nullable=False),
+        "genero": Column(str, nullable=False),
+        "limite_credito_tc": Column(float, Check.greater_than_or_equal_to(0), nullable=False),
+        "nivel_educativo": Column(str, nullable=False),
+        "nivel_tarjeta": Column(str, nullable=False),
+        "operaciones_ult_12m": Column(float, Check.greater_than_or_equal_to(0), nullable=False),
+        "personas_a_cargo": Column(float, Check.greater_than_or_equal_to(0), nullable=False)
     })
     esquema.validate(datos_tarjetas)
 
