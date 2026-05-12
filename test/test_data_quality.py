@@ -114,8 +114,22 @@ def test_integridad_referencial(datos_creditos, datos_tarjetas):
     })
     integridad_referencial.validate(df_ids)
 
-####################################################################
-# TODO: agregar al menos una función de test con una (1) 
-# o más validaciones más allá de la estructura del dataset de tarjetas.
-# Por ejemplo: unicidad de IDS en ambos datasets
-####################################################################
+def test_unicidad_ids(datos_creditos, datos_tarjetas):
+    """ 
+    Prueba para validar que los IDs de clientes sean únicos
+    en ambos datasets.
+    
+    Args:
+        datos_creditos (pd.DataFrame): Dataset de créditos.
+        datos_tarjetas (pd.DataFrame): Dataset de tarjetas.
+    """
+
+    # Atributo a analizar: Unicidad
+
+    # Verificar IDs únicos en créditos
+    assert datos_creditos["id_cliente"].is_unique, \
+        "Existen IDs duplicados en el dataset de créditos."
+
+    # Verificar IDs únicos en tarjetas
+    assert datos_tarjetas["id_cliente"].is_unique, \
+        "Existen IDs duplicados en el dataset de tarjetas."
