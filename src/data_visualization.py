@@ -62,6 +62,53 @@ def visualize_data(datos_creditos: str = "data/raw/datos_creditos.csv",
     # OPCIÓN EXTRA (ejemplo):  agregar la generación del reporte con ydata-profiling.
     ##################################################################################
 
+    # Distribución de edades según falta de pago
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        data=df_creditos,
+        x="edad",
+        hue="falta_pago",
+        bins=20,
+        kde=True,
+        multiple="stack"
+    )
+
+    plt.title("Distribución de edades según mora")
+    plt.xlabel("Edad")
+    plt.ylabel("Cantidad de clientes")
+    plt.savefig(output_dir / 'edad_vs_mora.png')
+    plt.close()
+
+    # Relación entre ingresos e importe solicitado
+    plt.figure(figsize=(10, 6))
+
+    sns.scatterplot(
+        data=df_creditos,
+        x="ingresos",
+        y="importe_solicitado",
+        hue="falta_pago"
+    )
+
+    plt.title("Ingresos vs Importe solicitado")
+    plt.xlabel("Ingresos")
+    plt.ylabel("Importe solicitado")
+    plt.savefig(output_dir / 'ingresos_vs_importe.png')
+    plt.close()
+
+    # Boxplot de tasa de interés según mora
+    plt.figure(figsize=(10, 6))
+
+    sns.boxplot(
+        data=df_creditos,
+        x="falta_pago",
+        y="tasa_interes"
+    )
+
+    plt.title("Tasa de interés según mora")
+    plt.xlabel("¿Presentó mora?")
+    plt.ylabel("Tasa de interés")
+    plt.savefig(output_dir / 'tasa_interes_vs_mora.png')
+    plt.close()
 
 if __name__ == "__main__":
     visualize_data()

@@ -9,3 +9,6 @@ stages:
       - docs/figures/target_distribution.png
       - docs/figures/correlation_heatmap_creditos.png
       - docs/figures/correlation_heatmap_tarjetas.png
+      - docs/figures/edad_vs_mora.png
+      - docs/figures/ingresos_vs_importe.png
+      - docs/figures/tasa_interes_vs_mora.png
